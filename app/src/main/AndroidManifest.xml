@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="zbz.com.qhlifecircle">
+    package="com.zbz.qhlifecircle">
 
     <application
         android:allowBackup="true"

@@ -1,4 +1,4 @@
-package zbz.com.qhlifecircle;
+package com.zbz.qhlifecircle;
 
 import org.junit.Test;
 

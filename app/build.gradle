@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "zbz.com.qhlifecircle"
+        applicationId "com.zbz.qhlifecircle"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1

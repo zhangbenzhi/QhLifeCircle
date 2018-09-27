@@ -1,4 +1,4 @@
-package zbz.com.qhlifecircle;
+package com.zbz.qhlifecircle;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
