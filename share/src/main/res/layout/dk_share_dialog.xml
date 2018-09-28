@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/dk_share_rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_weight="0">
+
+        <ImageView
+            android:id="@+id/dk_share_iv_close"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/dk_share_ic_close"/>
+
+        <TextView
+            android:id="@+id/dk_share_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#333333"
+            android:textSize="16dp"
+            tools:text="分享"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e4e8eb"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/dk_share_tv_subTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingTop="24dp"
+        android:textColor="#666666"
+        android:textSize="14dp"
+        tools:text="@string/dk_share_dialog_subTitle"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dk_share_rv_shareItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:paddingBottom="20dp"
+        android:scrollbars="none"/>
+
+    <TextView
+        android:id="@+id/dk_share_tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f3f4f5"
+        android:gravity="center"
+        android:text="@string/dk_share_dialog_cancel"
+        android:textSize="15dp"/>
+
+</LinearLayout>

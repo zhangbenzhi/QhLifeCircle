@@ -1,11 +1,24 @@
 <resources>
 
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- 必须设置下面的windowIsTranslucent沉浸式状态栏方案才能生效 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/windowBackground_default</item>
+        <item name="android:textColor">@color/text_color_333333</item>
+        <item name="android:textColorHint">@color/text_color_999999</item>
+        <item name="android:textSize">14sp</item>
+        <!-- 取消默认英文大写 -->
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
 </resources>

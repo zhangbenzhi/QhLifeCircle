@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">QhLifeCircle</string>
+    <string name="app_name">清河生活圈</string>
+
+    <string name="about_share_title">下载蛋壳app,让租房变得简单和快乐</string>
+    <string name="about_share_content">下载蛋壳公寓APP，地铁商圈、在线预约看房、专属管家随叫随到！</string>
+    <string name="about_share_url">https://www.dankegongyu.com/zhuanti/download</string>
 </resources>

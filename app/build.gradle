@@ -1,27 +1,119 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion project.compileSdkVersion
     defaultConfig {
         applicationId "com.zbz.qhlifecircle"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        def Properties keyProperties = new Properties()
+        keyProperties.load(new FileInputStream(file("${project.projectDir.absolutePath}/buildcfg/keystore.properties")))
+
+        release {
+            // release版本使用assert确保存在该属性否则报错，避免错误打包
+            assert keyProperties['releaseStoreFile']
+            storeFile file("${project.projectDir.absolutePath}" + keyProperties["releaseStoreFile"])
+            storePassword keyProperties["releaseStorePassword"]
+            keyAlias keyProperties["releaseKeyAlias"]
+            keyPassword keyProperties["releaseKeyPassword"]
+            // 禁用v2签名
+            // v2SigningEnabled false
+        }
+
+        debug {
+            storeFile file("${project.projectDir.absolutePath}" + keyProperties["debugStoreFile"])
+            storePassword keyProperties["debugStorePassword"]
+            keyAlias keyProperties["debugKeyAlias"]
+            keyPassword keyProperties["debugKeyPassword"]
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            // 混淆
+            minifyEnabled true
+            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "RELEASE", "true"
+
+            manifestPlaceholders = [
+                    UMENG_CHANNEL_VALUE: "umeng",
+                    GETUI_APP_ID       : "Lf0FFKfgJb7vKs4BArWMM9",
+                    GETUI_APP_KEY      : "fkado5HByk6CJMOFRZD4v3",
+                    GETUI_APP_SECRET   : "UElwqeEg4M6IJUXdHbPxu5",
+                    XIAOMI_APP_ID      : "2882303761517673878",
+                    XIAOMI_APP_KEY     : "5831767331878",
+                    MEIZU_APP_ID       : "112025",
+                    MEIZU_APP_KEY      : "53f755b2b13c44e19f0b1ccd62d7bb6c",
+                    HUAWEI_APP_ID      : "100148545"]
+        }
+
+        releaseTest {
+            // 混淆
+            minifyEnabled true
+            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "RELEASE", "false"
+
+            manifestPlaceholders = [
+                    UMENG_CHANNEL_VALUE: "umeng",
+                    GETUI_APP_ID       : "Wi8d7NPdlF7BNviTbOmy75",
+                    GETUI_APP_KEY      : "R6HpMTnzCQ6k4pekJC9mC1",
+                    GETUI_APP_SECRET   : "7rCDruqyg56DjOPKFk0SK1",
+                    XIAOMI_APP_ID      : "2882303761517673878",
+                    XIAOMI_APP_KEY     : "5831767331878",
+                    MEIZU_APP_ID       : "112025",
+                    MEIZU_APP_KEY      : "53f755b2b13c44e19f0b1ccd62d7bb6c",
+                    HUAWEI_APP_ID      : "100148545"]
+        }
+
+        debug {
+            // 混淆
+            minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            debuggable true
+            signingConfig signingConfigs.debug
+            buildConfigField "boolean", "RELEASE", "false"
+
+            manifestPlaceholders = [
+                    UMENG_CHANNEL_VALUE: "umeng",
+                    GETUI_APP_ID       : "Wi8d7NPdlF7BNviTbOmy75",
+                    GETUI_APP_KEY      : "R6HpMTnzCQ6k4pekJC9mC1",
+                    GETUI_APP_SECRET   : "7rCDruqyg56DjOPKFk0SK1",
+                    XIAOMI_APP_ID      : "2882303761517673878",
+                    XIAOMI_APP_KEY     : "5831767331878",
+                    MEIZU_APP_ID       : "112025",
+                    MEIZU_APP_KEY      : "53f755b2b13c44e19f0b1ccd62d7bb6c",
+                    HUAWEI_APP_ID      : "100148545"]
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':share')
+    implementation project(':statistics')
 }

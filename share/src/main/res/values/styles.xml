@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="DKShareDialogDefaultAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dk_share_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dk_share_exit_anim</item>
+    </style>
+
+</resources>

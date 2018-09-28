@@ -1,6 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+
+    ext.compileSdkVersion = 28
+    ext.buildToolsVersion = '27.0.3'
+    ext.minSdkVersion = 17
+    ext.targetSdkVersion = 23
+    ext.supportLibraryVersion = '27.1.1'
     
     repositories {
         google()
@@ -19,6 +25,12 @@ allprojects {
     repositories {
         google()
         jcenter()
+        /*maven {
+            url 'http://172.16.31.41:8081/nexus/content/repositories/dk-releases/'
+        }
+        maven {
+            url 'http://172.16.31.41:8081/nexus/content/repositories/dk-snapshots/'
+        }*/
     }
 }
 
